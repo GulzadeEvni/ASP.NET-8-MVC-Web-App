@@ -1,0 +1,9 @@
+﻿@model IEnumerable<MyApp.Models.CategoryViewModel>
+
+<ul class="categories-list">
+    @foreach (var category in Model)
+    {
+        <li>@category.Name</li>
+    }
+</ul>
+

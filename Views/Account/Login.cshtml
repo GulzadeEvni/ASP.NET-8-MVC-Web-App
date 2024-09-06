@@ -1,0 +1,36 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="card shadow-lg p-4 w-100" style="max-width: 400px;">
+        <h2 class="text-center text-primary mb-4">Giriş Yap</h2>
+        <form asp-action="Login" method="post" asp-route-returnurl="@ViewData["ReturnUrl"]">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <div class="mb-3">
+                <label asp-for="userName" class="form-label">İsim</label>
+                <input asp-for="userName" class="form-control" placeholder="Kullanıcı Adı Girin" />
+                <span asp-validation-for="userName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="password" class="form-label">Şifre</label>
+                <input asp-for="password" type="password" class="form-control" placeholder="Şifre Girin" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+               
+                <a asp-action="ForgotPassword" class="text-decoration-none">Şifremi Unuttum?</a>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
+            <div class="text-center mt-3">
+                <a asp-action="Register" class="text-decoration-none">Hesabın Yok mu? Kayıt Ol</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

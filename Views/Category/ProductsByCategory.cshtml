@@ -1,0 +1,38 @@
+﻿@model List<MyApp.Models.ProductViewModel>
+
+<div class="bg-white">
+    <div class="py-16 sm:py-24 lg:mx-auto lg:max-w-7xl lg:px-8">
+        <div class="relative mt-8">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <p class="text-lg font-semibold text-center">Hoşgeldin, @User.Identity.Name!</p>
+            }
+            <div class="relative -mb-6 w-full overflow-x-auto pb-6">
+                <ul role="list" class="mx-4 grid grid-cols-2 gap-6 sm:mx-6 sm:grid-cols-3 lg:mx-0 lg:grid-cols-4 lg:gap-8">
+                    @foreach (var card in Model)
+                    {
+                        <li class="flex flex-col text-center bg-white rounded-md shadow-sm hover:shadow-lg transition-shadow duration-300">
+                            <a href="@Url.Action("Productdetails", "Home", new { id = card.ProductId })" class="block">
+                                <div class="relative h-48 w-full overflow-hidden rounded-t-md bg-gray-200">
+                                    <img src="~/img/@card.ImgPath" alt="@card.ProductName" class="h-full w-full object-contain">
+                                </div>
+                                <div class="p-4 flex-grow">
+                                    <h3 class="mt-1 text-sm font-semibold text-gray-900">
+                                        @card.ProductName
+                                    </h3>
+                                    <p class="mt-1 text-gray-900">@card.Description</p>
+                                    <p class="mt-1 text-gray-900">@card.Price.ToString("N2", new System.Globalization.CultureInfo("tr-TR")) TL</p>
+                                </div>
+                            </a>
+                            <div class="mt-auto p-4">
+                                <button type="button" class="inline-block text-white font-bold py-2 px-4 rounded-full bg-gradient-to-r from-green-500 to-green-700 border border-transparent hover:scale-110 transition-transform duration-300" onclick="addToCart(@card.ProductId)">
+                                    Sepete Ekle
+                                </button>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

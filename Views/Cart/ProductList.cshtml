@@ -1,0 +1,20 @@
+﻿@model IEnumerable<MyApp.Models.ProductViewModel>
+
+@foreach (var product in Model)
+{
+    <div class="flex items-center p-4 bg-white shadow rounded-lg" data-product-id="@product.ProductId" data-product-price="@product.Price">
+        <div class="relative h-24 w-24">
+            <img src="~/img/@product.ImgPath" alt="@product.ProductName" class="absolute inset-0 w-full h-full object-contain rounded-lg">
+        </div>
+        <div class="ml-4">
+            <h2 class="text-lg font-semibold">@product.ProductName</h2>
+            <p>@product.Description</p>
+            <p>@product.Price TL</p>
+            <p>Ürün Adeti: <span id="quantity-@product.ProductId">@product.StockQuantity</span></p>
+            <button type="button" onclick="changeQuantity(@product.ProductId, 1)" class="px-2 py-1 bg-green-500 text-white rounded">Artır</button>
+            <button type="button" onclick="changeQuantity(@product.ProductId, -1)" class="px-2 py-1 bg-red-500 text-white rounded">Azalt</button>
+            <button type="button" onclick="removeFromCart(@product.ProductId)" class="px-2 py-1 bg-gray-500 text-white rounded">Sil</button>
+        </div>
+    </div>
+}
+

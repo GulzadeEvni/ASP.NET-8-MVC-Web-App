@@ -1,0 +1,8 @@
+﻿@model CartViewModel
+
+<div class="container mx-auto px-4">
+    <h1 class="text-2xl font-bold mb-4">Sepetim</h1>
+
+    @Html.Partial("ProductList", Model.ListProduct)
+    @Html.Partial("ProductTotal", Model)
+</div>
